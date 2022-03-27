@@ -1,0 +1,22 @@
+.inputWrapper {
+  display: flex;
+  max-width: 100%;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+input {
+  font-size: 12px;
+  outline: none;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  padding: 16px;
+}
+
+label {
+  position: absolute;
+  padding-inline-start: 0;
+  transition: all 0.2s ease-out;
+}
