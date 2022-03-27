@@ -4,12 +4,14 @@ import "./style.css";
 const Input = ({
   onChange,
   type = "text",
-  errorMessage,
   hintMessage,
   errorMessage,
   disabled,
   placeholder,
+  testId,
   value,
+  inputPrefix,
+  suffix,
   ...props
 }) => {
   return (
@@ -23,20 +25,17 @@ const Input = ({
             type={type}
             placeholder={placeholder}
             value={value}
+            data-testid={testId}
             {...props}
           />
           {suffix && <div>{suffix && suffix}</div>}
         </>
       </div>
-      {hintMessage && !errorMessage && (
-        <Text variant="caption" color={theme.color.border}>
-          {hintMessage}
-        </Text>
-      )}
+      {hintMessage && !errorMessage && <p variant="caption">{hintMessage}</p>}
       {errorMessage && (
-        <Text tag="p" variant="body2" color={theme.color.danger} m={0}>
+        <p tag="p" variant="body2" m={0}>
           {errorMessage}
-        </Text>
+        </p>
       )}
     </>
   );
