@@ -6,32 +6,22 @@ const Input = ({
   type = "text",
   errorMessage,
   hintMessage,
+  errorMessage,
   disabled,
   placeholder,
-  floatingLabel,
   value,
   ...props
 }) => {
   return (
     <>
-      <div
-        className="inputWrapper"
-        isFocused={isFocused}
-        hasError={!!errorMessage}
-        grayed={grayed}
-        disabled={disabled}
-        isFloatingLabel={!!floatingLabel}
-        hasValue={!!value}
-      >
+      <div className="inputWrapper" disabled={disabled}>
         <>
           {inputPrefix && <span>{inputPrefix}</span>}
           <input
             onChange={onChange}
-            onBlur={assignBlurToField}
-            onFocus={assignFocusToField}
             disabled={disabled}
             type={type}
-            placeholder={!floatingLabel ? placeholder : ""}
+            placeholder={placeholder}
             value={value}
             {...props}
           />
