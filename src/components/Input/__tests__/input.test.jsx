@@ -9,7 +9,7 @@ describe("Input", () => {
       // snapshot
 
       const mockChangeAction = jest.fn();
-      const utils = render(
+      const tree = render(
         <Input
           onChange={mockChangeAction}
           placeholder="text"
@@ -18,25 +18,25 @@ describe("Input", () => {
       );
       const input = screen.getByTestId("main-input");
       expect(input).toHaveAttribute("placeholder");
-      expect(utils).toMatchSnapshot();
+      expect(tree).toMatchSnapshot();
     });
 
     it("renders Input component with value", () => {
       //snapshot
       // make sure of value attribute has the same entered value
 
-      const utils = render(<Input value="text" testId="main-input" />);
+      const tree = render(<Input value="text" testId="main-input" />);
       const input = screen.getByTestId("main-input");
       expect(input).toHaveAttribute("value");
-      expect(utils).toMatchSnapshot();
+      expect(tree).toMatchSnapshot();
     });
 
     it("when user right in input element, it trigger change in Input Component", () => {
       // simulate change event
       // assert on onchange function that is called with same value triggered in simulation
 
-      const utils = render(<Input testId="main-input" />);
-      const input = utils.getByTestId("main-input");
+      render(<Input testId="main-input" />);
+      const input = screen.getByTestId("main-input");
       fireEvent.change(input, { target: { value: "amr" } });
       expect(input.value).toBe("amr");
     });
@@ -45,18 +45,20 @@ describe("Input", () => {
       // snapshot
       // message rendered in the right place
 
-      const utils = render(<Input hintMessage="text" testId="main-input" />);
-      const input = screen.getByTestId("main-input");
-      expect(utils).toMatchSnapshot();
+      const tree = render(<Input hintMessage="text" testId="main-input" />);
+      const input = screen.getByTestId("main-input-hint");
+      expect(input).toHaveTextContent("text");
+      expect(tree).toMatchSnapshot();
     });
 
     it("renders Input component with error and hide hint message", () => {
       // snapshot
       // error rendered in the right place
 
-      const utils = render(<Input errorMessage="error" testId="main-input" />);
-      const input = screen.getByTestId("main-input");
-      expect(utils).toMatchSnapshot();
+      const tree = render(<Input errorMessage="error" testId="main-input" />);
+      const input = screen.getByTestId("main-input-error");
+      expect(input).toHaveTextContent("error");
+      expect(tree).toMatchSnapshot();
     });
 
     it("renders disabled input", () => {

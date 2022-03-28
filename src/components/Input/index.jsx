@@ -31,9 +31,13 @@ const Input = ({
           {suffix && <div>{suffix && suffix}</div>}
         </>
       </div>
-      {hintMessage && !errorMessage && <p variant="caption">{hintMessage}</p>}
+      {hintMessage && !errorMessage && (
+        <p data-testid={`${testId}-hint`} variant="caption">
+          {hintMessage}
+        </p>
+      )}
       {errorMessage && (
-        <p tag="p" variant="body2" m={0}>
+        <p data-testid={`${testId}-error`} tag="p" variant="body2" m={0}>
           {errorMessage}
         </p>
       )}
